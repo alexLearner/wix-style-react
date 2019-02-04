@@ -134,3 +134,9 @@ import { noBorderInputDriverFactory } from '../src/NoBorderInput/NoBorderInput.p
 export const noBorderInputTestkitFactory = puppeteerTestkitFactoryCreator(
   noBorderInputDriverFactory,
 );
+
+import { colorInputDriverFactory } from '../src/ColorInput/ColorInput.driver';
+
+export const colorInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  colorInputDriverFactory,
+);

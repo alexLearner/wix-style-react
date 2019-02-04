@@ -193,4 +193,8 @@ module.exports = {
   RichTextInputArea: { unidriver: true },
 
   NoBorderInput: {},
+  ColorInput: {
+    testkitPath: '../src/ColorInput/ColorInput.driver',
+    unidriver: true,
+  },
 };
