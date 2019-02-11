@@ -236,4 +236,9 @@ export default {
       children: <GoogleAddressInput Client={GmapsTestClient} />,
     },
   },
+  ColorInput: {
+    props: {
+      value: '#000',
+    },
+  },
 };

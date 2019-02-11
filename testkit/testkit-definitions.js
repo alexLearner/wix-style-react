@@ -194,7 +194,6 @@ module.exports = {
 
   NoBorderInput: {},
   ColorInput: {
-    testkitPath: '../src/ColorInput/ColorInput.driver',
     unidriver: true,
   },
 };
