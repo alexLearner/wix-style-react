@@ -7,6 +7,7 @@ import {
   description,
   testkit,
   importExample,
+  columns,
   liveCode as baseLiveCode,
 } from 'wix-storybook-utils/Sections';
 
@@ -16,7 +17,6 @@ import { placements } from 'wix-style-react/Popover';
 import { baseScope } from '../utils/Components/LiveCodeExample';
 
 import * as examples from './examples';
-import usage from '!raw-loader!./Usage.md';
 import styles from './examples.scss';
 
 const baseProps = {
@@ -28,6 +28,11 @@ const baseProps = {
 
 const liveCode = config =>
   baseLiveCode({ components: { ...baseScope }, ...baseProps, ...config });
+
+const example = ({ title, text, source }) =>
+  columns({
+    items: [description({ title, text }), liveCode({ compact: true, source })],
+  });
 
 export default {
   category: storySettings.kind,
@@ -81,13 +86,39 @@ export default {
         }),
 
         description({
-          title: 'Semi Controlled',
-          text: usage,
+          title: 'Usage',
+          text:
+            'ColorInput is semi-controlled which means that consumer will only get changed value through `onConfirm` handler when one of the confirm events occurs.',
         }),
 
-        liveCode({
-          source: examples.semicontrolled,
+        columns({
+          items: [
+            description({
+              text: '### Examples',
+            }),
+            description(),
+          ],
         }),
+
+        ...[
+          {
+            title: 'Plain Example',
+            text: 'Example shows how to use component.',
+            source: examples.basicExample,
+          },
+          {
+            title: 'Size',
+            text: 'ColorInput supports `small`, `medium` and `large` sizes.',
+            source: examples.sizes,
+          },
+
+          {
+            title: 'Error and Disabled',
+            text:
+              'ColorInput can be triggered to show `error` with error message or can be `disabled`.',
+            source: examples.states,
+          },
+        ].map(example),
       ],
     }),
 
