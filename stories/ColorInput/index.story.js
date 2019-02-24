@@ -1,11 +1,15 @@
+import React from 'react';
 import { storySettings } from './storySettings';
 import {
   tab,
+  tabs,
   api,
   playground,
   description,
+  divider,
   importExample,
   columns,
+  header,
   liveCode as baseLiveCode,
 } from 'wix-storybook-utils/Sections';
 
@@ -67,66 +71,84 @@ export default {
   },
 
   sections: [
-    tab({
-      title: 'Description',
-      sections: [
-        description({
-          text:
-            '🎨 A component that lets user enter hex color or select it from color pallete.',
-        }),
+    header({
+      component: (
+        <div style={{ width: '50%' }}>
+          <ColorInput value="#FF0000" popoverAppendTo="window" />
+        </div>
+      ),
+      sourceUrl:
+        'https://github.com/wix/wix-style-react/tree/master/src/ColorInput/ColorInput.js',
+      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
+    }),
 
-        importExample({
-          source: "import ColorInput from 'wix-style-react/ColorInput';",
-        }),
-
-        description({
-          title: 'Usage',
-          text: usage,
-        }),
-
-        columns({
-          items: [
+    tabs({
+      tabs: [
+        tab({
+          title: 'Description',
+          sections: [
             description({
-              text: '### Examples',
+              text:
+                '🎨 A component that lets user enter hex color or select it from color pallete.',
             }),
-            description(),
+
+            importExample({
+              source: "import ColorInput from 'wix-style-react/ColorInput';",
+            }),
+
+            divider(),
+
+            description({
+              title: 'Usage',
+              text: usage,
+            }),
+
+            columns({
+              items: [
+                description({
+                  text: '### Examples',
+                }),
+                description(),
+              ],
+            }),
+
+            ...[
+              {
+                title: 'Plain Example',
+                text: 'Example shows how to use component.',
+                source: examples.basicExample,
+              },
+              {
+                title: 'Size',
+                text:
+                  'ColorInput supports `small`, `medium` and `large` sizes.',
+                source: examples.sizes,
+              },
+
+              {
+                title: 'Error, Null and Disabled',
+                text: 'ColorInput has `error`, `null` and `disabled` states.',
+                source: examples.states,
+              },
+            ].map(example),
           ],
         }),
 
-        ...[
-          {
-            title: 'Plain Example',
-            text: 'Example shows how to use component.',
-            source: examples.basicExample,
-          },
-          {
-            title: 'Size',
-            text: 'ColorInput supports `small`, `medium` and `large` sizes.',
-            source: examples.sizes,
-          },
+        tab({
+          title: 'API',
+          sections: [api()],
+        }),
 
-          {
-            title: 'Error, Null and Disabled',
-            text: 'ColorInput has `error`, `null` and `disabled` states.',
-            source: examples.states,
-          },
-        ].map(example),
+        tab({
+          title: 'Testkit',
+          sections: [description({ text: testkit })],
+        }),
+
+        tab({
+          title: 'Playground',
+          sections: [playground()],
+        }),
       ],
-    }),
-
-    tab({
-      title: 'API',
-      sections: [api()],
-    }),
-
-    tab({
-      title: 'Testkit',
-      sections: [description({ text: testkit })],
-    }),
-
-    tab({
-      title: 'Playground',
-      sections: [playground()],
     }),
   ],
 };

@@ -1,6 +1,6 @@
 # ColorInput Testkits
 
-## API
+### API
 
 | method            | arguments | returned value     | description                                     |
 | ----------------- | --------- | ------------------ | ----------------------------------------------- |
@@ -11,7 +11,7 @@
 | popoverDriver     | -         | `Promise<func>`    | returns Popover's component testkit methods     |
 | clickColorViewer  | -         | `Promise<void>`    | clicks on color viewer box                      |
 
-## ReactTestUtils Example
+### ReactTestUtils Example
 
 ```javascript
 import React from 'react';
@@ -40,7 +40,7 @@ describe('Element should exist', async () => {
 });
 ```
 
-## Enzyme Example
+### Enzyme Example
 
 ```javascript
 import React from 'react';
@@ -63,7 +63,7 @@ describe('Element should exist', async () => {
 });
 ```
 
-## Puppeteer Example
+### Puppeteer Example
 
 > Element should be rendered with a data-hook into the DOM `<ColorInput dataHook="myDataHook" />`
 
@@ -88,7 +88,7 @@ describe('Element should exist', async () => {
 });
 ```
 
-## Protractor Example
+### Protractor Example
 
 > Element should be rendered with a data-hook into the DOM `<ColorInput dataHook="myDataHook" />`
 
