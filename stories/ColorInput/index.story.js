@@ -55,12 +55,6 @@ export default {
     disabled: false,
   }),
 
-  componentWrapper: ({ component }) => (
-    <Layout>
-      <Cell span={6}>{component}</Cell>
-    </Layout>
-  ),
-
   exampleProps: {
     errorMessage: '',
     size: ['small', 'medium', 'large'],
@@ -79,7 +73,8 @@ export default {
       title: 'Description',
       sections: [
         description({
-          text: '🎨 Color input with color picker popover.',
+          text:
+            '🎨 A component that lets user enter hex color or select it from color pallete.',
         }),
 
         importExample({
@@ -122,11 +117,6 @@ export default {
     }),
 
     tab({
-      title: 'Playground',
-      sections: [playground()],
-    }),
-
-    tab({
       title: 'API',
       sections: [api()],
     }),
@@ -134,6 +124,11 @@ export default {
     tab({
       title: 'Testkit',
       sections: [testkit()],
+    }),
+
+    tab({
+      title: 'Playground',
+      sections: [playground()],
     }),
   ],
 };

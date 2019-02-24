@@ -26,9 +26,13 @@ export const colorInputDriverFactory = base => {
 
   return {
     ...baseUniDriverFactory(base),
+    /** Returns Input's component teskit methods */
     inputDriver: async () => inputTestkit(await base.getNative()),
+    /** Returns ColorPicker's component testkit methods */
     colorPickerDriver: async () => colorPickerTestkit(await base.getNative()),
+    /** Returns Popovers's component testkit methods */
     popoverDriver: async () => popoverTestkit(await base.getNative()),
+    /** Clicks on color viewer box */
     clickColorViewer: async () => base.$(colorViewerHook).click(),
   };
 };
