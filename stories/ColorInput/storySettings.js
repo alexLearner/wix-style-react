@@ -7,3 +7,7 @@ export const storySettings = {
   storyName: '4.8 ColorInput',
   dataHook: 'story-color-input',
 };
+
+export const testStories = {
+  STATES: 'ColorInput states',
+};

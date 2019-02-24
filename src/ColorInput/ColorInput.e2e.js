@@ -1,39 +1,24 @@
-import {
-  createStoryUrl,
-  waitForVisibilityOf,
-  scrollToElement,
-} from 'wix-ui-test-utils/protractor';
-
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import { colorInputTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/ColorInput/storySettings';
+import {
+  storySettings,
+  testStories,
+} from '../../stories/ColorInput/storySettings';
+
+import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
 
 const eyes = eyesItInstance();
+const testStoryUrl = testName =>
+  createTestStoryUrl({ ...storySettings, testName });
 
 describe('ColorInput', () => {
-  const storyUrl = createStoryUrl({
-    kind: storySettings.category,
-    story: storySettings.storyName,
-  });
+  describe('test stories', () => {
+    const checkTestStory = async testName => {
+      await browser.get(testStoryUrl(testName));
+      eyes.checkWindow(testName);
+    };
 
-  const createDriver = async (dataHook = storySettings.dataHook) => {
-    const driver = colorInputTestkitFactory({ dataHook });
-
-    await waitForVisibilityOf(
-      await driver.element(),
-      `Cannot find <ColorInput/> component with dataHook of ${dataHook}`,
-    );
-
-    await scrollToElement(await driver.element());
-
-    return driver;
-  };
-
-  beforeAll(async () => {
-    await browser.get(storyUrl);
-  });
-
-  eyes.it('should render', async () => {
-    await createDriver();
+    eyes.it('check colorinput states', async () => {
+      await checkTestStory(testStories.STATES);
+    });
   });
 });
