@@ -1,17 +1,15 @@
-import React from 'react';
 import { storySettings } from './storySettings';
 import {
   tab,
   api,
   playground,
   description,
-  testkit,
   importExample,
   columns,
   liveCode as baseLiveCode,
 } from 'wix-storybook-utils/Sections';
 
-import { Layout, Cell } from 'wix-style-react/Layout';
+import testkit from '!raw-loader!./README.TESTKIT.md';
 import ColorInput from 'wix-style-react/ColorInput';
 import { placements } from 'wix-style-react/Popover';
 import { baseScope } from '../utils/Components/LiveCodeExample';
@@ -123,7 +121,7 @@ export default {
 
     tab({
       title: 'Testkit',
-      sections: [testkit()],
+      sections: [description({ text: testkit })],
     }),
 
     tab({
