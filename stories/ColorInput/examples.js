@@ -43,6 +43,9 @@ export const states = `
     <ColorInput value="#FF0000" error errorMessage="message" />
   </Cell>
   <Cell>
+    <ColorInput value="" />
+  </Cell>
+  <Cell>
     <ColorInput value="#FF0000" disabled />
   </Cell>
 </Layout>

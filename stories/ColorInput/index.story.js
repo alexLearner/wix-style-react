@@ -16,6 +16,7 @@ import ColorInput from 'wix-style-react/ColorInput';
 import { placements } from 'wix-style-react/Popover';
 import { baseScope } from '../utils/Components/LiveCodeExample';
 
+import usage from '!raw-loader!./Usage.md';
 import * as examples from './examples';
 import styles from './examples.scss';
 
@@ -87,8 +88,7 @@ export default {
 
         description({
           title: 'Usage',
-          text:
-            'ColorInput is semi-controlled which means that consumer will only get changed value through `onConfirm` handler when one of the confirm events occurs.',
+          text: usage,
         }),
 
         columns({
@@ -113,9 +113,8 @@ export default {
           },
 
           {
-            title: 'Error and Disabled',
-            text:
-              'ColorInput can be triggered to show `error` with error message or can be `disabled`.',
+            title: 'Error, Null and Disabled',
+            text: 'ColorInput has `error`, `null` and `disabled` states.',
             source: examples.states,
           },
         ].map(example),

@@ -2,7 +2,7 @@ import React from 'react';
 import { node, bool, string, func, oneOf } from 'prop-types';
 
 import { polyfill } from 'react-lifecycles-compat';
-import { placements } from '../Popover';
+
 import Input from '../Input';
 import { Hash, ColorViewer } from './components';
 
@@ -23,7 +23,23 @@ class ColorInput extends React.Component {
     /** input size */
     size: oneOf(['small', 'medium', 'large']),
     /** colorpicker popover placement */
-    popoverPlacement: oneOf([...placements]),
+    popoverPlacement: oneOf([
+      'auto-start',
+      'auto',
+      'auto-end',
+      'top-start',
+      'top',
+      'top-end',
+      'right-start',
+      'right',
+      'right-end',
+      'bottom-end',
+      'bottom',
+      'bottom-start',
+      'left-end',
+      'left',
+      'left-start',
+    ]),
     /** colorpicker popover calculation to a dom element */
     popoverAppendTo: oneOf(['window', 'scrollParent', 'viewport', 'parent']),
     /** input value */
@@ -83,11 +99,11 @@ class ColorInput extends React.Component {
         size={this._sizeMapping(size)}
         placement={popoverPlacement}
         appendTo={popoverAppendTo}
-        onClick={this._onClick}
+        onClick={this.click}
         onChange={this._onPickerChange}
-        onCancel={this._onCancel}
-        onConfirm={this._onConfirm}
-        onClickOutside={this._onConfirm}
+        onCancel={this.cancel}
+        onConfirm={this.confirm}
+        onClickOutside={this.confirm}
       />
     );
   };
@@ -107,26 +123,26 @@ class ColorInput extends React.Component {
     this.setState({ value, active: true }, callback);
   };
 
-  _onClick = () => {
+  _onFocus = () => this.setState({ active: true });
+
+  keyDown = e => {
+    e.key === 'Enter' && this.confirm();
+    e.key === 'Escape' && this.cancel();
+  };
+
+  click = () => {
     this.input.focus();
     this.setState({ active: true });
   };
 
-  _onFocus = () => this.setState({ active: true });
-
-  _onKeyDown = e => {
-    e.key === 'Enter' && this._onConfirm();
-    e.key === 'Escape' && this._onCancel();
-  };
-
-  _onConfirm = () => {
+  confirm = () => {
     const { onConfirm } = this.props;
     const value = validateHex(this.state.value);
     const callback = () => onConfirm && onConfirm(value);
     this.setState({ active: false, value }, callback);
   };
 
-  _onCancel = () => {
+  cancel = () => {
     const { onCancel } = this.props;
     const callback = () => onCancel && onCancel(this.props.value);
     this.setState({ value: this.props.value, active: false }, callback);
@@ -144,10 +160,10 @@ class ColorInput extends React.Component {
         statusMessage={errorMessage}
         placeholder={placeHolder}
         size={this._sizeMapping(size)}
-        onKeyDown={this._onKeyDown}
+        onKeyDown={this.keyDown}
         onChange={this._onChange}
         onFocus={this._onFocus}
-        onInputClicked={this._onClick}
+        onInputClicked={this.click}
         value={value.replace('#', '')}
         prefix={this._renderPrefix()}
         suffix={this._renderSuffix()}
