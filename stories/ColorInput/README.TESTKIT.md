@@ -1,6 +1,4 @@
-# ColorInput Testkits
-
-### API
+### Testkit API
 
 | method            | arguments | returned value     | description                                     |
 | ----------------- | --------- | ------------------ | ----------------------------------------------- |

@@ -125,7 +125,7 @@ class ColorInput extends React.Component {
 
   _onFocus = () => this.setState({ active: true });
 
-  keyDown = e => {
+  _keyDown = e => {
     e.key === 'Enter' && this.confirm();
     e.key === 'Escape' && this.cancel();
   };
@@ -160,7 +160,7 @@ class ColorInput extends React.Component {
         statusMessage={errorMessage}
         placeholder={placeHolder}
         size={this._sizeMapping(size)}
-        onKeyDown={this.keyDown}
+        onKeyDown={this._keyDown}
         onChange={this._onChange}
         onFocus={this._onFocus}
         onInputClicked={this.click}

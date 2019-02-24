@@ -20,17 +20,8 @@ import { baseScope } from '../utils/Components/LiveCodeExample';
 
 import usage from '!raw-loader!./Usage.md';
 import * as examples from './examples';
-import styles from './examples.scss';
 
-const baseProps = {
-  autoRender: false,
-  previewProps: {
-    className: styles.livePreview,
-  },
-};
-
-const liveCode = config =>
-  baseLiveCode({ components: { ...baseScope }, ...baseProps, ...config });
+const liveCode = config => baseLiveCode({ components: baseScope, ...config });
 
 const example = ({ title, text, source }) =>
   columns({

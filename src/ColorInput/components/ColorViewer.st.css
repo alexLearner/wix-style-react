@@ -24,4 +24,9 @@
            rgba(214,69,61,0) 100%)
 }
 
+.root:size(large) {
+  width: 24px;
+  height: 24px;
+}
+
 
