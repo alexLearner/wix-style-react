@@ -47,13 +47,13 @@ class ColorInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      focused: false,
+      active: false,
       value: '',
     };
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.value !== state.value && state.focused === false) {
+    if (props.value !== state.value && state.active === false) {
       return {
         ...state,
         value: props.value.toUpperCase(),
@@ -63,22 +63,22 @@ class ColorInput extends React.Component {
 
   _renderPrefix = () => {
     const { disabled, size } = this.props;
-    const { focused, value } = this.state;
+    const { active, value } = this.state;
     const hash = (
       <Input.Affix>
         <Hash disabled={disabled} size={this._sizeMapping(size)} />
       </Input.Affix>
     );
-    return focused || value ? hash : undefined;
+    return active || value ? hash : undefined;
   };
 
   _renderSuffix = () => {
-    const { value, focused } = this.state;
+    const { value, active } = this.state;
     const { size, popoverPlacement, popoverAppendTo, disabled } = this.props;
     return (
       <ColorViewer
         value={value}
-        focused={focused}
+        active={active}
         disabled={disabled}
         size={this._sizeMapping(size)}
         placement={popoverPlacement}
@@ -104,15 +104,15 @@ class ColorInput extends React.Component {
   _onPickerChange = value => {
     const { onPreview } = this.props;
     const callback = onPreview && onPreview(value);
-    this.setState({ value, focused: true }, callback);
+    this.setState({ value, active: true }, callback);
   };
 
   _onClick = () => {
     this.input.focus();
-    this.setState({ focused: true });
+    this.setState({ active: true });
   };
 
-  _onFocus = () => this.setState({ focused: true });
+  _onFocus = () => this.setState({ active: true });
 
   _onKeyDown = e => {
     e.key === 'Enter' && this._onConfirm();
@@ -123,19 +123,19 @@ class ColorInput extends React.Component {
     const { onConfirm } = this.props;
     const value = validateHex(this.state.value);
     const callback = () => onConfirm && onConfirm(value);
-    this.setState({ focused: false, value }, callback);
+    this.setState({ active: false, value }, callback);
   };
 
   _onCancel = () => {
     const { onCancel } = this.props;
     const callback = () => onCancel && onCancel(this.props.value);
-    this.setState({ value: this.props.value, focused: false }, callback);
+    this.setState({ value: this.props.value, active: false }, callback);
   };
 
   render() {
     const { placeholder, errorMessage, size, ...rest } = this.props;
-    const { focused, value } = this.state;
-    const placeHolder = focused ? undefined : placeholder;
+    const { active, value } = this.state;
+    const placeHolder = active ? undefined : placeholder;
     return (
       <Input
         {...rest}

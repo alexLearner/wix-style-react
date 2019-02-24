@@ -10,7 +10,7 @@ export class ColorViewer extends React.Component {
     const {
       value,
       disabled,
-      focused,
+      active,
       onClick,
       onChange,
       onConfirm,
@@ -25,7 +25,7 @@ export class ColorViewer extends React.Component {
         showArrow
         fixed
         dataHook="colorinput-popover"
-        shown={focused}
+        shown={active}
         placement={placement}
         appendTo={appendTo}
         onClickOutside={onClickOutside}

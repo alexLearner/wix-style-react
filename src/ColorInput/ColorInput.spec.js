@@ -176,6 +176,7 @@ describe('ColorInput', () => {
         const onConfirm = jest.fn();
         const driver = createDriver(renderColorInput({ onConfirm }));
         (await driver.inputDriver()).click();
+        (await driver.inputDriver()).enterText('#123');
         (await driver.colorPickerDriver()).confirm();
         expect((await driver.colorPickerDriver()).exists()).toBe(false);
       });
@@ -186,9 +187,10 @@ describe('ColorInput', () => {
         const onConfirm = jest.fn();
         const driver = createDriver(renderColorInput({ onConfirm }));
         (await driver.inputDriver()).click();
+        (await driver.inputDriver()).enterText('#123');
         (await driver.colorPickerDriver()).confirm();
         expect(onConfirm).toHaveBeenCalledTimes(1);
-        expect(onConfirm.mock.calls[0][0]).toBe('');
+        expect(onConfirm.mock.calls[0][0]).toBe('#112233');
       });
       it(`'cancel' should fire cancel event for input`, async () => {
         const value = '#123456';
