@@ -10,7 +10,7 @@ import {
   importExample,
   columns,
   header,
-  liveCode as baseLiveCode,
+  code as baseCode,
 } from 'wix-storybook-utils/Sections';
 
 import testkit from '!raw-loader!./README.TESTKIT.md';
