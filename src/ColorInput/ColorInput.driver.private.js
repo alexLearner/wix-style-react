@@ -19,7 +19,7 @@ export const colorInputPrivateDriverFactory = base => {
     );
   return {
     ...publicDriverFactory(base),
-    isHashDisabled: async () => await isHashDisabled(),
+    isHashDisabled,
     isViewerNull: async () =>
       await base.$('[data-hook="colorinput-viewer-line"]').exists(),
     getViewerSize: async () => await getViewerSize(),
