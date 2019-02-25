@@ -19,7 +19,7 @@ describe('ColorInput', () => {
 
   const createDriver = createUniDriverFactory(colorInputPrivateDriverFactory);
 
-  describe('Input ', () => {
+  describe('Input', () => {
     it('should be in controlled mode when value is passed', async () => {
       const value = 'value';
       const { inputDriver } = createDriver(renderColorInput({ value }));
