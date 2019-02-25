@@ -4,7 +4,8 @@ import { node, bool, string, func, oneOf } from 'prop-types';
 import { polyfill } from 'react-lifecycles-compat';
 
 import Input from '../Input';
-import { Hash, ColorViewer } from './components';
+import { Hash } from './components/Hash';
+import { ColorViewer } from './components/ColorViewer';
 
 import { validateHex, extractHex } from './hex-helpers';
 
@@ -58,6 +59,9 @@ class ColorInput extends React.Component {
     size: 'medium',
     popoverPlacement: 'bottom',
     popoverAppendTo: 'parent',
+    onPreview: () => {},
+    onConfirm: () => {},
+    onCancel: () => {},
   };
 
   constructor(props) {
@@ -110,22 +114,17 @@ class ColorInput extends React.Component {
 
   _sizeMapping = size => (size === 'medium' ? 'normal' : size);
 
-  _onChange = evt => {
-    const value = extractHex(evt.target.value);
-    this.setState({
-      value: value === '' ? '' : value,
-    });
-  };
+  _onChange = evt => this.setState({ value: extractHex(evt.target.value) });
 
   _onPickerChange = value => {
     const { onPreview } = this.props;
-    const callback = onPreview && onPreview(value);
-    this.setState({ value, active: true }, callback);
+    this.setState({ value, active: true }, () => onPreview(value));
   };
 
   _onFocus = () => this.setState({ active: true });
 
   _keyDown = e => {
+    e.stopPropagation();
     e.key === 'Enter' && this.confirm();
     e.key === 'Escape' && this.cancel();
   };
@@ -137,28 +136,28 @@ class ColorInput extends React.Component {
 
   confirm = () => {
     const { onConfirm } = this.props;
-    const value = validateHex(this.state.value);
-    const callback = () => onConfirm && onConfirm(value);
-    this.setState({ active: false, value }, callback);
+    this.setState({ active: false, value: validateHex(this.state.value) }, () =>
+      onConfirm(validateHex(this.state.value)),
+    );
   };
 
   cancel = () => {
     const { onCancel } = this.props;
-    const callback = () => onCancel && onCancel(this.props.value);
-    this.setState({ value: this.props.value, active: false }, callback);
+    this.setState({ value: this.props.value, active: false }, () =>
+      onCancel(this.props.value),
+    );
   };
 
   render() {
     const { placeholder, errorMessage, size, ...rest } = this.props;
     const { active, value } = this.state;
-    const placeHolder = active ? undefined : placeholder;
     return (
       <Input
         {...rest}
         ref={input => (this.input = input)}
         status={this.props.error ? 'error' : undefined}
         statusMessage={errorMessage}
-        placeholder={placeHolder}
+        placeholder={active ? undefined : placeholder}
         size={this._sizeMapping(size)}
         onKeyDown={this._keyDown}
         onChange={this._onChange}
