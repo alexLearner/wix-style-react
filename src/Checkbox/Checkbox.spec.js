@@ -95,4 +95,9 @@ describe('Checkbox', () => {
     expect(global.console.warn).not.toBeCalled();
     global.console.warn = cachedConsoleWarn;
   });
+
+  it('should not have error class when disabled', () => {
+    const driver = createDriver(<Checkbox hasError disabled/>);
+    expect(driver.hasError()).toEqual(false);
+  })
 });
