@@ -51,7 +51,7 @@ export default {
   exampleProps: {
     errorMessage: '',
     size: ['small', 'medium', 'large'],
-    popoverPlacement: [...placements],
+    popoverPlacement: placements,
     popoverAppendTo: [
       { label: 'window', value: window },
       { label: 'scrollParent', value: 'scrollParent' },
