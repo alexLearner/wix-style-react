@@ -23,7 +23,7 @@ describe('ColorInput', () => {
     it('should be in controlled mode when value is passed', async () => {
       const value = 'value';
       const { inputDriver } = createDriver(renderColorInput({ value }));
-      expect((await inputDriver()).getValue()).toBe('VALUE');
+      expect((await inputDriver()).getValue()).toBe('AE');
     });
 
     describe(`value`, () => {
@@ -91,7 +91,7 @@ describe('ColorInput', () => {
           const { inputDriver } = createDriver(renderColorInput({ onConfirm }));
           (await inputDriver()).enterText(expectation);
           expect((await inputDriver()).getValue()).toBe(
-            extractHex(expectation),
+            extractHex(expectation).replace('#', ''),
           );
           (await inputDriver()).keyDown('Enter');
           expect(onConfirm).toHaveBeenCalledTimes(1);
@@ -262,7 +262,7 @@ describe('ColorInput', () => {
         const onConfirm = jest.fn();
         const { inputDriver } = createDriver(renderColorInput({ onConfirm }));
         (await inputDriver()).enterText('#123');
-        expect((await inputDriver()).getValue()).toBe(extractHex('123'));
+        expect((await inputDriver()).getValue()).toBe('123');
         (await inputDriver()).keyDown('Enter');
         expect(onConfirm).toHaveBeenCalledTimes(1);
         expect(onConfirm.mock.calls[0][0]).toBe('#112233');
@@ -276,7 +276,7 @@ describe('ColorInput', () => {
           renderColorInput({ onCancel, value }),
         );
         (await inputDriver()).enterText('#123');
-        expect((await inputDriver()).getValue()).toBe(extractHex('123'));
+        expect((await inputDriver()).getValue()).toBe('123');
         (await inputDriver()).keyDown('Escape');
         expect(onCancel).toHaveBeenCalledTimes(1);
         expect(onCancel.mock.calls[0][0]).toBe(value);

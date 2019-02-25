@@ -72,7 +72,7 @@ class ColorInput extends React.Component {
     if (!state.active && props.value !== state.value) {
       return {
         ...state,
-        value: props.value.toUpperCase(),
+        value: extractHex(props.value),
       };
     }
   }
@@ -113,7 +113,7 @@ class ColorInput extends React.Component {
   _onChange = evt => {
     const value = extractHex(evt.target.value);
     this.setState({
-      value: value === '' ? '' : `#${value}`,
+      value: value === '' ? '' : value,
     });
   };
 

@@ -2,6 +2,10 @@ const contains = (...array) => number => array.includes(number);
 
 const hexRules = [
   {
+    when: contains(0),
+    make: () => '',
+  },
+  {
     when: contains(1),
     make: hex => '#' + hex[0].repeat(6),
   },
@@ -29,4 +33,5 @@ export const validateHex = hex => {
   return hexRules.find(({ when }) => when(hexLength)).make(hexArray);
 };
 
-export const extractHex = hex => hex.toUpperCase().replace(/[^A-F0-9]/g, '');
+export const extractHex = hex =>
+  `#${hex.toUpperCase().replace(/[^A-F0-9]/g, '')}`;
