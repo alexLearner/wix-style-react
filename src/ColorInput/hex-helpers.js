@@ -14,7 +14,7 @@ const hexRules = [
     make: hex => '#' + hex[0].repeat(2) + hex[1].repeat(2) + hex[2].repeat(2),
   },
   {
-    when: number => contains(6)(number) || number > 6,
+    when: length => contains(6)(length) || length > 6,
     make: hex => '#' + hex.slice(0, 6),
   },
 ];
