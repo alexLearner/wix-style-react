@@ -1,5 +1,7 @@
-ColorInput is semi-controlled which means that consumer will only get changed value through `onConfirm` handler when one of the following confirm events occurs:
+`<ColorInput/>` is an input which allows to write HEX color manually or pick it from color picker.
 
-- consumer press `Enter` key
-- consumer clicks on ColorPicker's confirm button
-- consumer clicks outside of input or color picker
+Value is received through `onConfirm` callback, which is called after:
+
+- clicking <kbd>Enter</kbd> key
+- clicking <kbd>✓</kbd> button on color picker
+- clicking outside of `<ColorInput/>`
