@@ -69,7 +69,7 @@ class ColorInput extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.value !== state.value && state.active === false) {
+    if (!state.active && props.value !== state.value) {
       return {
         ...state,
         value: props.value.toUpperCase(),
