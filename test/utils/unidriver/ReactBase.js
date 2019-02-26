@@ -58,7 +58,7 @@ export function ReactBase(base, document) {
     tabIndex: async () => (await htmlElement()).tabIndex,
     readOnly: async () => (await htmlElement()).readOnly,
     innerHtml: async () => (await htmlElement()).innerHTML,
-    focus: async () => (await htmlElement()).focus(),
+    focus: async () => Simulate.focus(await htmlElement()),
     isFocus: async () => {
       return (
         (await document.getNative()).activeElement === (await htmlElement())
