@@ -608,15 +608,15 @@ describe('Input', () => {
         // TODO
         it('should be displayed after entering text into empty uncontrolled input', async () => {
           const { driver } = render(<Input clearButton />);
-          driver.enterText('some value');
+          await driver.enterText('some value');
           expect(await driver.hasClearButton()).toBe(true);
         });
 
         // TODO
         it('should clear input when using uncontrolled component', async () => {
           const { driver } = render(<Input clearButton />);
-          driver.enterText('some value');
-          driver.clickClear();
+          await driver.enterText('some value');
+          await driver.clickClear();
           expect(await driver.getValue()).toBe('');
           expect(await driver.isFocus()).toBe(true);
         });
@@ -627,8 +627,8 @@ describe('Input', () => {
             <Input defaultValue="some default value" clearButton />,
           );
           expect(await driver.hasClearButton()).toBe(true);
-          driver.clearText();
-          driver.enterText('new value');
+          await driver.clearText();
+          await driver.enterText('new value');
           expect(await driver.hasClearButton()).toBe(false);
         });
       });
