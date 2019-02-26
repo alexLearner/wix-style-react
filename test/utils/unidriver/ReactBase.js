@@ -15,9 +15,11 @@ export function ReactBase(base) {
 
   return {
     pressKey: async key => Simulate.keyDown(await htmlElement(), { key }),
+    mouseLeave: async () => Simulate.mouseLeave(await htmlElement()),
     tagName: async () => (await htmlElement()).tagName,
     innerHtml: async () => (await htmlElement()).innerHTML,
-    focus: async () => (await htmlElement()).focus(),
-    blur: async () => (await htmlElement()).blur(),
+    children: async () => (await htmlElement()).children,
+    focus: async () => Simulate.focus(await htmlElement()),
+    blur: async () => Simulate.blur(await htmlElement()),
   };
 }
