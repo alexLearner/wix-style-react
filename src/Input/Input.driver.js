@@ -37,6 +37,7 @@ const inputDriverFactory = ({ element }) => {
     clickMagnifyingGlass: () =>
       ReactTestUtils.Simulate.click(magnifyingGlassNode),
     clickCustomAffix: () => ReactTestUtils.Simulate.click(customAffixNode),
+    clickClear: () => ReactTestUtils.Simulate.click(clearButton),
     clickIconAffix: () => ReactTestUtils.Simulate.click(iconAffixNode),
     clickMenuArrow: () => ReactTestUtils.Simulate.click(menuArrowNode),
     mouseOver: () => ReactTestUtils.Simulate.mouseOver(input),
