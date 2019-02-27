@@ -49,10 +49,7 @@ export const carouselTestkitFactory = testkitFactoryCreator(load(require('../src
 export const checkboxTestkitFactory = testkitFactoryCreator(load(require('../src/Checkbox/Checkbox.driver')));
 export const circularProgressBarTestkitFactory = testkitFactoryCreator(load(require('../src/CircularProgressBar/CircularProgressBar.driver')));
 export const closeButtonTestkitFactory = uniTestkitFactoryCreator(load(require('../src/CloseButton/CloseButton.driver')));
-<<<<<<< HEAD
-=======
 export const colorInputTestkitFactory = uniTestkitFactoryCreator(load(require('../src/ColorInput/ColorInput.driver')));
->>>>>>> <ColorInput/> - fix colorinput testkit definition
 export const colorPickerTestkitFactory = testkitFactoryCreator(load(require('../src/ColorPicker/ColorPicker.driver')));
 export const contactItemBuilderTestkitFactory = testkitFactoryCreator(load(require('../src/ContactItemBuilder/ContactItemBuilder.driver')));
 export const counterBadgeTestkitFactory = testkitFactoryCreator(load(require('../src/CounterBadge/CounterBadge.driver')));
@@ -67,11 +64,7 @@ export const filePickerTestkitFactory = testkitFactoryCreator(load(require('../s
 export const floatingHelperTestkitFactory = testkitFactoryCreator(load(require('../src/FloatingHelper/FloatingHelper.driver')));
 export const floatingNotificationTestkitFactory = uniTestkitFactoryCreator(load(require('../src/FloatingNotification/FloatingNotification.driver')));
 export const formFieldTestkitFactory = testkitFactoryCreator(load(require('../src/FormField/FormField.driver')));
-<<<<<<< HEAD
 export const generatedTestComponentTestkitFactory = uniTestkitFactoryCreator(load(require('../src/GeneratedTestComponent/GeneratedTestComponent.uni.driver')));
-=======
-export const generatedTestComponentTestkitFactory = uniTestkitFactoryCreator(load(require('../src/GeneratedTestComponent/GeneratedTestComponent.driver')));
->>>>>>> <ColorInput/> - fix colorinput testkit definition
 export const genericModalLayoutTestkitFactory = testkitFactoryCreator(load(require('../src/GenericModalLayout/GenericModalLayout.driver')));
 export const googleAddressInputWithLabelTestkitFactory = testkitFactoryCreator(load(require('../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver')));
 export const headingTestkitFactory = testkitFactoryCreator(load(require('../src/Heading/Heading.driver')));
@@ -128,8 +121,4 @@ export const fieldLabelAttributesTestkitFactory = testkitFactoryCreator(load(req
 export const fieldWithSelectionCompositeTestkitFactory = testkitFactoryCreator(load(require('../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver')));
 export const radioButtonTestkitFactory = testkitFactoryCreator(load(require('../src/RadioGroup/RadioButton/RadioButton.driver')));
 export const messageBoxMarketerialLayoutTestkitFactory = testkitFactoryCreator(load(require('../src/MessageBox/MessageBoxMarketerialLayout.driver')));
-<<<<<<< HEAD
 export const messageBoxFunctionalLayoutTestkitFactory = testkitFactoryCreator(load(require('../src/MessageBox/MessageBoxFunctionalLayout.driver')));
-=======
-export const messageBoxFunctionalLayoutTestkitFactory = testkitFactoryCreator(load(require('../src/MessageBox/MessageBoxFunctionalLayout.driver')));
->>>>>>> <ColorInput/> - fix colorinput testkit definition
