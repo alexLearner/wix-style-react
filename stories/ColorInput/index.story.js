@@ -80,7 +80,7 @@ export default {
           sections: [
             description({
               text:
-                '🎨 A component that lets user enter hex color or select it from color pallete.',
+                '🎨 ColorInput is an input which allows to write HEX color manually or pick it from color picker.',
             }),
 
             importExample({
@@ -105,9 +105,14 @@ export default {
 
             ...[
               {
-                title: 'Plain Example',
-                text: 'Example shows how to use component.',
-                source: examples.basicExample,
+                title: 'Controlled',
+                text: 'The component is used in controlled mode.',
+                source: examples.controlledExample,
+              },
+              {
+                title: 'Semi-Controlled',
+                text: 'The component returns only valid hex values.',
+                source: examples.semiControlledExample,
               },
               {
                 title: 'Size',

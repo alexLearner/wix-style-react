@@ -1,4 +1,29 @@
-export const basicExample = `
+export const controlledExample = `
+class ColorInputWithState extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      value: '#FF0000',
+    };
+    this.change = this.change.bind(this);
+  }
+
+  change(value) { this.setState({ value }) }
+
+  render() {
+    const { value } = this.state;
+    return (
+      <Layout>
+        <Cell>
+          <ColorInput value={value} onChange={this.change} />
+        </Cell>
+      </Layout>
+    );
+  }
+}
+`;
+
+export const semiControlledExample = `
 class ColorInputWithState extends React.Component {
   constructor() {
     super();

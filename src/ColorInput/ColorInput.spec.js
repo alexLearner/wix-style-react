@@ -257,8 +257,39 @@ describe('ColorInput', () => {
       });
     });
 
+    describe('`onChange` prop', () => {
+      it(`should be triggered when input value has changed`, async () => {
+        const onChange = jest.fn();
+        const { inputDriver } = createDriver(renderColorInput({ onChange }));
+        (await inputDriver()).enterText('#123');
+        expect(onChange).toHaveBeenCalledTimes(1);
+        expect(onChange.mock.calls[0][0]).toBe('#123');
+      });
+      it(`should be triggered when one of the confirmed actions triggered`, async () => {
+        const onChange = jest.fn();
+        const { inputDriver } = createDriver(renderColorInput({ onChange }));
+        (await inputDriver()).enterText('#123');
+        (await inputDriver()).keyDown('Enter');
+        expect(onChange).toHaveBeenCalledTimes(2);
+        expect(onChange.mock.calls[0][0]).toBe('#123');
+        expect(onChange.mock.calls[1][0]).toBe('#112233');
+      });
+      it(`should be triggered when one of the cancelled actions triggered`, async () => {
+        const value = '#1234';
+        const onChange = jest.fn();
+        const { inputDriver } = createDriver(
+          renderColorInput({ onChange, value }),
+        );
+        (await inputDriver()).enterText('#123');
+        (await inputDriver()).keyDown('Escape');
+        expect(onChange).toHaveBeenCalledTimes(2);
+        expect(onChange.mock.calls[0][0]).toBe('#123');
+        expect(onChange.mock.calls[1][0]).toBe(value);
+      });
+    });
+
     describe('`onConfirm` prop', () => {
-      it(`should return confirmd value `, async () => {
+      it(`should return confirmed value `, async () => {
         const onConfirm = jest.fn();
         const { inputDriver } = createDriver(renderColorInput({ onConfirm }));
         (await inputDriver()).enterText('#123');

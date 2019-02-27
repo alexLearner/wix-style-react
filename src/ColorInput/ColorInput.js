@@ -47,10 +47,10 @@ class ColorInput extends React.Component {
     value: string.isRequired,
     /** returns confirmed value */
     onConfirm: func,
-    /** returns last confirmed value which is props.value */
+    /** returns last confirmed value which is from user prop - value */
     onCancel: func,
-    /** returns colorpicker change value */
-    onPreview: func,
+    /** returns either input's or colorpicker's changed value */
+    onChange: func,
   };
 
   static defaultProps = {
@@ -59,7 +59,7 @@ class ColorInput extends React.Component {
     size: 'medium',
     popoverPlacement: 'bottom',
     popoverAppendTo: 'parent',
-    onPreview: () => {},
+    onChange: () => {},
     onConfirm: () => {},
     onCancel: () => {},
   };
@@ -114,11 +114,15 @@ class ColorInput extends React.Component {
 
   _sizeMapping = size => (size === 'medium' ? 'normal' : size);
 
-  _onChange = evt => this.setState({ value: extractHex(evt.target.value) });
+  _onChange = evt => {
+    const { onChange } = this.props;
+    const value = extractHex(evt.target.value);
+    this.setState({ value: extractHex(value) }, () => onChange(value));
+  };
 
   _onPickerChange = value => {
-    const { onPreview } = this.props;
-    this.setState({ value, active: true }, () => onPreview(value));
+    const { onChange } = this.props;
+    this.setState({ active: true, value }, () => onChange(value));
   };
 
   _onFocus = () => this.setState({ active: true });
@@ -135,17 +139,20 @@ class ColorInput extends React.Component {
   };
 
   confirm = () => {
-    const { onConfirm } = this.props;
-    this.setState({ active: false, value: validateHex(this.state.value) }, () =>
-      onConfirm(validateHex(this.state.value)),
-    );
+    const { onConfirm, onChange } = this.props;
+    const value = validateHex(this.state.value);
+    this.setState({ active: false, value }, () => {
+      onConfirm(value);
+      onChange(value);
+    });
   };
 
   cancel = () => {
-    const { onCancel } = this.props;
-    this.setState({ value: this.props.value, active: false }, () =>
-      onCancel(this.props.value),
-    );
+    const { onCancel, onChange, value } = this.props;
+    this.setState({ active: false, value }, () => {
+      onCancel(value);
+      onChange(value);
+    });
   };
 
   render() {
