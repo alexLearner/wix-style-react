@@ -97,7 +97,7 @@ describe('Checkbox', () => {
   });
 
   it('should not have error when disabled', () => {
-    const driver = createDriver(<Checkbox hasError disabled/>);
+    const driver = createDriver(<Checkbox hasError disabled />);
     expect(driver.hasError()).toEqual(false);
-  })
+  });
 });
