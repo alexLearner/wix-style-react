@@ -5,8 +5,8 @@ import { storiesOf } from '@storybook/react';
 import { getTestStoryKind } from '../../storiesHierarchy';
 
 import Page from 'wix-style-react/Page';
-import Notification from '../../src/Notification';
-import Card from '../../src/Card';
+import Card from 'wix-style-react/Card';
+import Notification from 'wix-style-react/Notification';
 
 import * as s from './PageTestStories.scss';
 import { header, tail, fixedContent, content } from './PageChildren';
